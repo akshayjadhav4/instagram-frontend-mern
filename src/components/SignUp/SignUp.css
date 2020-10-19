@@ -3,6 +3,9 @@
   place-items: center;
 }
 
+.signUp__card {
+  margin-top: 10px;
+}
 .signUp__logoContainer {
   display: flex;
   justify-content: center;

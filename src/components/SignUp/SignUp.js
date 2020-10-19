@@ -39,7 +39,7 @@ function SignUp() {
   };
   return (
     <div className="signUp">
-      <Card>
+      <Card className="signUp__card">
         <div className="signUp__logoContainer">
           <img src={logo} alt="logo" className="signUp__logo" />
         </div>
