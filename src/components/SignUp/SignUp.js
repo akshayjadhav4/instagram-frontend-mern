@@ -10,6 +10,8 @@ import { CssTextField } from "../CssTextField/CssTextField";
 import { Link, useHistory } from "react-router-dom";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import { signup, authenticate } from "../../api/auth/index";
+import { performRedirect } from "../RedirectHelper/RedirectHelper";
+
 const useStyles = makeStyles((theme) => ({
   textField: {
     width: "40ch",
@@ -59,6 +61,7 @@ function SignUp() {
   };
   return (
     <div className="signUp">
+      {performRedirect()}
       <Card className="signUp__card">
         <div className="signUp__logoContainer">
           <img src={logo} alt="logo" className="signUp__logo" />
