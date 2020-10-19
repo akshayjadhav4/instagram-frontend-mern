@@ -25,6 +25,10 @@
   margin-bottom: 10px;
 }
 
+.signIn__alert {
+  margin: 10px;
+}
+
 .signIn__form {
   display: grid;
   place-items: center;

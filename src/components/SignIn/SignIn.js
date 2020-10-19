@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SignIn.css";
 import mockup from "../../images/UI.png";
 import logo from "../../images/logo.png";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Card, Button, CardContent } from "@material-ui/core";
+import { Card, Button, CardContent, CircularProgress } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Alert from "@material-ui/lab/Alert";
 import { CssTextField } from "../CssTextField/CssTextField";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import FacebookIcon from "@material-ui/icons/Facebook";
-
+import { signin, authenticate } from "../../api/auth/index";
 const useStyles = makeStyles((theme) => ({
   textField: {
     width: "40ch",
@@ -30,9 +31,29 @@ const validationSchema = Yup.object({
 
 function SignIn() {
   const classes = useStyles();
-  const onSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
+  const history = useHistory();
+
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState("");
+
+  const onSubmit = (values, { resetForm, setSubmitting }) => {
+    setProcessing(true);
+    signin(values)
+      .then((data) => {
+        if (data.error) {
+          setProcessing(false);
+          setError(data.error);
+          setSubmitting(false);
+        } else {
+          authenticate(data, () => {
+            setProcessing(false);
+            setError("");
+            resetForm();
+            history.push("/");
+          });
+        }
+      })
+      .catch((error) => setError("ERROR IN SIGNUP"));
   };
   return (
     <div className="signIn">
@@ -44,6 +65,11 @@ function SignIn() {
               <img src={logo} alt="logo" className="signIn__logo" />
             </div>
             <CardContent>
+              {error && (
+                <div className="signIn__alert">
+                  <Alert severity="error">{error}</Alert>
+                </div>
+              )}
               <div className="signIn__form">
                 <Formik
                   initialValues={initialValues}
@@ -99,8 +125,11 @@ function SignIn() {
                         <br />
                         <Button
                           type="submit"
+                          startIcon={
+                            processing && <CircularProgress size="20px" />
+                          }
                           fullWidth={true}
-                          disabled={isSubmitting}
+                          disabled={isSubmitting || processing}
                           variant="contained"
                         >
                           Sign in
