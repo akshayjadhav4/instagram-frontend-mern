@@ -109,53 +109,50 @@ function Navbar({ history }) {
           >
             <List className={classes.list}>
               <ListItem key={0} button divider>
-                <Link
-                  to="/"
-                  className={`navbar__link ${
-                    history.location.pathname === "/" && "navbar__link--active"
-                  }`}
-                >
+                <Link to="/">
                   <IconButton>
-                    <HomeIcon />
+                    <HomeIcon
+                      className={`navbar__link ${
+                        history.location.pathname === "/" &&
+                        "navbar__link--active"
+                      }`}
+                    />
                   </IconButton>
                 </Link>
               </ListItem>
               <ListItem key={1} button divider>
-                <Link
-                  to="/messages"
-                  className={`navbar__link ${
-                    history.location.pathname === "/messages" &&
-                    "navbar__link--active"
-                  }`}
-                >
+                <Link to="/messages">
                   <IconButton>
-                    <TelegramIcon />
+                    <TelegramIcon
+                      className={`navbar__link ${
+                        history.location.pathname === "/messages" &&
+                        "navbar__link--active"
+                      }`}
+                    />
                   </IconButton>
                 </Link>
               </ListItem>
               <ListItem key={2} button divider>
-                <Link
-                  to="/explore"
-                  className={`navbar__link ${
-                    history.location.pathname === "/explore" &&
-                    "navbar__link--active"
-                  }`}
-                >
+                <Link to="/explore">
                   <IconButton>
-                    <ExploreIcon />
+                    <ExploreIcon
+                      className={`navbar__link ${
+                        history.location.pathname === "/explore" &&
+                        "navbar__link--active"
+                      }`}
+                    />
                   </IconButton>
                 </Link>
               </ListItem>
               <ListItem key={3} button divider>
-                <Link
-                  to="/profile"
-                  className={`navbar__link ${
-                    history.location.pathname === "/profile" &&
-                    "navbar__link--active"
-                  }`}
-                >
+                <Link to="/profile">
                   <IconButton>
-                    <AccountCircleIcon />
+                    <AccountCircleIcon
+                      className={`navbar__link ${
+                        history.location.pathname === "/profile" &&
+                        "navbar__link--active"
+                      }`}
+                    />
                   </IconButton>
                 </Link>
               </ListItem>
@@ -186,45 +183,43 @@ function Navbar({ history }) {
               />
             </Link>
           </Typography>
-          <Link
-            to="/"
-            className={`navbar__link ${
-              history.location.pathname === "/" && "navbar__link--active"
-            }`}
-          >
+          <Link to="/">
             <IconButton>
-              <HomeIcon />
+              <HomeIcon
+                className={`navbar__link ${
+                  history.location.pathname === "/" && "navbar__link--active"
+                }`}
+              />
             </IconButton>
           </Link>
-          <Link
-            to="/messages"
-            className={`navbar__link ${
-              history.location.pathname === "/messages" &&
-              "navbar__link--active"
-            }`}
-          >
+          <Link to="/messages">
             <IconButton>
-              <TelegramIcon />
+              <TelegramIcon
+                className={`navbar__link ${
+                  history.location.pathname === "/messages" &&
+                  "navbar__link--active"
+                }`}
+              />
             </IconButton>
           </Link>
-          <Link
-            to="/explore"
-            className={`navbar__link ${
-              history.location.pathname === "/explore" && "navbar__link--active"
-            }`}
-          >
+          <Link to="/explore">
             <IconButton>
-              <ExploreIcon />
+              <ExploreIcon
+                className={`navbar__link ${
+                  history.location.pathname === "/explore" &&
+                  "navbar__link--active"
+                }`}
+              />
             </IconButton>
           </Link>
-          <Link
-            to="/profile"
-            className={`navbar__link ${
-              history.location.pathname === "/profile" && "navbar__link--active"
-            }`}
-          >
+          <Link to="/profile">
             <IconButton>
-              <AccountCircleIcon />
+              <AccountCircleIcon
+                className={`navbar__link ${
+                  history.location.pathname === "/profile" &&
+                  "navbar__link--active"
+                }`}
+              />
             </IconButton>
           </Link>
         </Toolbar>
