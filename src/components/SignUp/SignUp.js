@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SignUp.css";
 import logo from "../../images/logo.png";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Card, CardContent, Button } from "@material-ui/core";
+import { Card, CardContent, Button, CircularProgress } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
 import { CssTextField } from "../CssTextField/CssTextField";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import FacebookIcon from "@material-ui/icons/Facebook";
-
+import { signup, authenticate } from "../../api/auth/index";
 const useStyles = makeStyles((theme) => ({
   textField: {
     width: "40ch",
@@ -33,9 +34,28 @@ const validationSchema = Yup.object({
 
 function SignUp() {
   const classes = useStyles();
-  const onSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
+  const history = useHistory();
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState("");
+
+  const onSubmit = (values, { resetForm, setSubmitting }) => {
+    setProcessing(true);
+    signup(values)
+      .then((data) => {
+        if (data.error) {
+          setProcessing(false);
+          setError(data.error);
+          setSubmitting(false);
+        } else {
+          authenticate(data, () => {
+            setProcessing(false);
+            setError("");
+            resetForm();
+            history.push("/");
+          });
+        }
+      })
+      .catch((error) => setError("ERROR IN SIGNUP"));
   };
   return (
     <div className="signUp">
@@ -61,6 +81,11 @@ function SignUp() {
               <span>OR</span>
             </h4>
           </div>
+          {error && (
+            <div className="signUp__alert">
+              <Alert severity="error">{error}</Alert>
+            </div>
+          )}
           <div className="signUp__form">
             <Formik
               initialValues={initialValues}
@@ -143,9 +168,10 @@ function SignUp() {
                     <br />
                     <br />
                     <Button
+                      startIcon={processing && <CircularProgress size="20px" />}
                       type="submit"
                       fullWidth={true}
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || processing}
                       variant="contained"
                     >
                       Sign up
