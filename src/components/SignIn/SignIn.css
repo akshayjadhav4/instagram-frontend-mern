@@ -1,0 +1,84 @@
+.signIn {
+  display: grid;
+  place-items: center;
+}
+
+.signIn__container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.signIn__card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.signIn__logoContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.signIn__logo {
+  width: 200px;
+  object-fit: contain;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.signIn__form {
+  display: grid;
+  place-items: center;
+}
+
+.signin__divider {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+h4 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #ab958e;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color: #ab958e;
+}
+
+h4 span {
+  background: #fff;
+  padding: 0 10px;
+}
+
+.signIn__footer {
+  display: grid;
+  place-items: center;
+}
+
+.signIn__fblogin {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #385185;
+}
+
+.signIn__footer p {
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 12px;
+  color: #ab958e;
+}
+
+.signIn__link {
+  text-decoration: none;
+  color: #00a2f8;
+}
+
+.signIn__linkCard {
+  display: grid;
+  place-items: center;
+}
+
+@media (max-width: 777px) {
+  .signIn__container {
+    flex-direction: column;
+  }
+}
