@@ -4,7 +4,9 @@ function Base({ children }) {
   return (
     <div className="base">
       <Navbar />
-      {children}
+      <div className="base__container" style={{ marginTop: "70px" }}>
+        {children}
+      </div>
     </div>
   );
 }
