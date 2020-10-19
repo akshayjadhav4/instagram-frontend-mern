@@ -1,0 +1,13 @@
+.navbar__link {
+  text-decoration: none;
+  color: #626060;
+}
+
+.navbar__--active {
+  color: black;
+}
+
+.MuiAppBar-colorPrimary {
+  background-color: white !important;
+  color: black !important;
+}
