@@ -11,6 +11,7 @@ import Alert from "@material-ui/lab/Alert";
 import { isAuthenticated } from "../../api/auth";
 import { getUserInfo } from "../../api/user/userApiCalls";
 import { getAllUserPosts } from "../../api/posts/postsApiCalls";
+import PostGrid from "../PostGrid/PostGrid";
 function Profile() {
   const [info, setInfo] = useState("");
   const [posts, setposts] = useState([]);
@@ -94,7 +95,7 @@ function Profile() {
             </div>
           )}
           <div className="profile__postsGrid">
-            {isLoading ? <CircularProgress /> : <h1> POSTGRID</h1>}
+            {isLoading ? <CircularProgress /> : <PostGrid posts={posts} />}
           </div>
         </div>
       </div>

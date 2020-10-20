@@ -24,6 +24,7 @@
 
 .profile__postsGrid {
   text-align: center;
+  padding: 20px;
 }
 
 .profile__postsGrid .MuiCircularProgress-colorPrimary {
