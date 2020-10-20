@@ -53,3 +53,14 @@
   font-size: 16px;
   line-height: 24px;
 }
+
+@media (max-width: 559px) {
+  .profileHeader {
+    flex-direction: column;
+    margin: 20px;
+  }
+  .profileHeader__avtar {
+    height: 100px !important;
+    width: 100px !important;
+  }
+}

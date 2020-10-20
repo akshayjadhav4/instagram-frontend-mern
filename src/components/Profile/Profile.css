@@ -30,9 +30,9 @@
   color: #ab958e !important;
 }
 
-@media (max-width: 559px) {
+/* @media (max-width: 559px) {
   .profile__divider {
     width: 200%;
     margin-left: -50%;
   }
-}
+} */
