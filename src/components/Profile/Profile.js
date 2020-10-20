@@ -6,15 +6,16 @@ import GridOnSharpIcon from "@material-ui/icons/GridOnSharp";
 import LiveTvSharpIcon from "@material-ui/icons/LiveTvSharp";
 import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
 import AccountBoxOutlinedIcon from "@material-ui/icons/AccountBoxOutlined";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { isAuthenticated } from "../../api/auth";
 import { getUserInfo } from "../../api/user/userApiCalls";
+import { getAllUserPosts } from "../../api/posts/postsApiCalls";
 function Profile() {
   const [info, setInfo] = useState("");
-  // const [posts, setposts] = useState([]);
+  const [posts, setposts] = useState([]);
   const [error, setError] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const { user, token } = isAuthenticated();
 
   // gettinguser info like followers,posts,following
@@ -32,6 +33,28 @@ function Profile() {
     };
     LoadInfo();
   }, [token, user._id]);
+
+  // loading all user posts to show on profile
+  useEffect(() => {
+    const loadPosts = () => {
+      setIsLoading(true);
+      getAllUserPosts(user._id, token)
+        .then((data) => {
+          if (data.error) {
+            setError(data.error);
+            setIsLoading(false);
+          } else {
+            setposts(data);
+            setIsLoading(false);
+          }
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setError("ERROR WHILE GETTING USER PROFILE POSTS");
+        });
+    };
+    loadPosts();
+  }, [user._id, token]);
 
   return (
     <Base>
@@ -70,7 +93,9 @@ function Profile() {
               <Alert severity="error">{error}</Alert>
             </div>
           )}
-          <div className="profile__postsGrid"></div>
+          <div className="profile__postsGrid">
+            {isLoading ? <CircularProgress /> : <h1> POSTGRID</h1>}
+          </div>
         </div>
       </div>
     </Base>

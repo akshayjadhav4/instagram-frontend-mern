@@ -22,6 +22,14 @@
   color: black !important;
 }
 
+.profile__postsGrid {
+  text-align: center;
+}
+
+.profile__postsGrid .MuiCircularProgress-colorPrimary {
+  color: #ab958e !important;
+}
+
 @media (max-width: 559px) {
   .profile__divider {
     width: 200%;
