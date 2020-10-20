@@ -53,6 +53,10 @@ h4 span {
   place-items: center;
 }
 
+.signUp__form .MuiButton-label {
+  color: white !important;
+}
+
 .signUp__p {
   font-size: 12px;
   line-height: 16px;
