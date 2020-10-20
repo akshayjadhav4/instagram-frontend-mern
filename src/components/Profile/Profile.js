@@ -6,12 +6,14 @@ import GridOnSharpIcon from "@material-ui/icons/GridOnSharp";
 import LiveTvSharpIcon from "@material-ui/icons/LiveTvSharp";
 import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
 import AccountBoxOutlinedIcon from "@material-ui/icons/AccountBoxOutlined";
-import { Button, CircularProgress } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import { Button, CircularProgress, Fab } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { isAuthenticated } from "../../api/auth";
 import { getUserInfo } from "../../api/user/userApiCalls";
 import { getAllUserPosts } from "../../api/posts/postsApiCalls";
 import PostGrid from "../PostGrid/PostGrid";
+import { Link } from "react-router-dom";
 function Profile() {
   const [info, setInfo] = useState("");
   const [posts, setposts] = useState([]);
@@ -87,6 +89,11 @@ function Profile() {
             <Button startIcon={<AccountBoxOutlinedIcon />} variant="text">
               TAGGED
             </Button>
+            <Link to="/addPost" className="profile__link">
+              <Fab aria-label="add">
+                <AddIcon />
+              </Fab>
+            </Link>
           </div>
           <hr className="profile__divider" />
           {error && (

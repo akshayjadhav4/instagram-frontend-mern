@@ -1,0 +1,12 @@
+.addPost__header {
+  display: flex;
+  align-items: center;
+}
+
+.addPost__form {
+  margin: 20px;
+}
+
+.addPost__form .MuiButton-label {
+  color: white !important;
+}

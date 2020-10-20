@@ -6,6 +6,7 @@ import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import PrivateRoutes from "./api/auth/PrivateRoutes";
 import Profile from "./components/Profile/Profile";
+import AddPost from "./components/AddPost/AddPost";
 function App() {
   return (
     <div className="app">
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <PrivateRoutes path="/" exact component={Home} />
           <PrivateRoutes path="/profile" exact component={Profile} />
+          <PrivateRoutes path="/addPost" exact component={AddPost} />
           <Route path="/signup" exact component={SignUp} />
           <Route path="/signin" exact component={SignIn} />
         </Switch>
