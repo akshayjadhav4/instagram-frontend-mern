@@ -1,0 +1,54 @@
+.profileHeader {
+  display: flex;
+  align-items: flex-start;
+}
+
+.profileHeader__avtar {
+  height: 180px !important;
+  width: 180px !important;
+}
+
+.profileHeader__photo {
+  margin-right: 50px;
+}
+
+.profileHeader__userControls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profileHeader__userName {
+  flex: 0.5;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 300;
+}
+
+.profileHeader__editButton {
+  margin-right: 10px !important;
+}
+
+.profileHeader__userStats {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profileHeader__link {
+  text-decoration: none;
+  margin-right: 40px;
+  font: 16px;
+  color: black;
+}
+
+.profileHeader__name > h1 {
+  font-size: 16px;
+  display: inline;
+  font-weight: 600;
+}
+
+.profileHeader__bio > p {
+  font-size: 16px;
+  line-height: 24px;
+}
