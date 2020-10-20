@@ -36,9 +36,11 @@ function ProfileHeader({ username, posts, followers, following, name, bio }) {
       <div className="profileHeader__info">
         <div className="profileHeader__userControls">
           <h1 className="profileHeader__userName">{username}</h1>
-          <Button variant="outlined" className="profileHeader__editButton">
-            Edit Profile
-          </Button>
+          <Link to="/user/editProfile" className="profileHeader__link">
+            <Button variant="outlined" className="profileHeader__editButton">
+              Edit Profile
+            </Button>
+          </Link>
           <>
             <IconButton onClick={handleClick}>
               <SettingsSharpIcon />

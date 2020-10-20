@@ -1,0 +1,52 @@
+.editProfile {
+  margin: 30px;
+}
+
+.editProfile__cardContainer {
+  display: flex;
+  align-items: flex-start;
+  height: 80vh;
+}
+
+.editProfile__option {
+  flex: 0.2;
+  border: 1px solid black;
+  height: 100%;
+  padding: 5px;
+  min-width: 150px;
+}
+
+.editProfile__option > h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px;
+  color: #c1c1c1;
+  cursor: pointer;
+}
+
+.editProfile__option > h3:nth-child(1) {
+  color: black;
+}
+
+.editProfile__from {
+  flex: 0.8;
+  border: 1px solid black;
+  padding: 5px;
+  height: 100%;
+}
+
+.editProfile__info {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.editProfile__avtar {
+  height: 60px !important;
+  width: 60px !important;
+  margin-right: 20px;
+}
+
+.editProfile__from .MuiButton-label {
+  color: white !important;
+}

@@ -15,3 +15,21 @@ export const getUserInfo = (token, userId) => {
       console.log(error);
     });
 };
+
+export const updateUser = (userId, token, user) => {
+  return fetch(`${API}/user/updateProfile/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(user),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
