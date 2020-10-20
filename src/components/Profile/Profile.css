@@ -2,3 +2,24 @@
   margin: 0 auto; /* this will center the page */
   max-width: 960px; /*  use your width here */
 }
+
+.profile__divider {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 200%;
+  margin-left: -50%;
+}
+
+.profile__menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.MuiButton-root {
+  color: #ab958e !important;
+}
+
+.profile__menu--active {
+  color: black !important;
+}
