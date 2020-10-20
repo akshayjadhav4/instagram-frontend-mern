@@ -6,8 +6,6 @@
 .profile__divider {
   margin-top: 20px;
   margin-bottom: 10px;
-  width: 200%;
-  margin-left: -50%;
 }
 
 .profile__menu {
@@ -22,4 +20,11 @@
 
 .profile__menu--active {
   color: black !important;
+}
+
+@media (max-width: 559px) {
+  .profile__divider {
+    width: 200%;
+    margin-left: -50%;
+  }
 }
