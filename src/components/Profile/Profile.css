@@ -1,0 +1,4 @@
+.profile__container {
+  margin: 0 auto; /* this will center the page */
+  max-width: 960px; /*  use your width here */
+}
