@@ -17,7 +17,7 @@ function PostGrid({ posts }) {
       <Grid container spacing={3}>
         {posts &&
           posts.map((post) => (
-            <Grid item xs={12} sm={4} md={4} lg={4}>
+            <Grid item xs={12} sm={4} md={4} lg={4} key={post._id}>
               <Card className={classes.root}>
                 <CardContent>
                   <ImageHelper post={post} />
