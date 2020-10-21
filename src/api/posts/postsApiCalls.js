@@ -77,3 +77,19 @@ export const unlikePost = (postId, userId, token) => {
     })
     .catch((error) => console.log(error));
 };
+
+export const addComment = (postId, userId, token, comment) => {
+  return fetch(`${API}/post/comment/${postId}/${userId}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(comment),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};

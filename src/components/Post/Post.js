@@ -8,7 +8,8 @@ import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 import ModeCommentOutlinedIcon from "@material-ui/icons/ModeCommentOutlined";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import { isAuthenticated } from "../../api/auth";
-function Post({ post, like, unlike }) {
+import CommentBox from "../CommentBox/CommentBox";
+function Post({ post, like, unlike, reload, setReload }) {
   const { user } = isAuthenticated();
   return (
     <div className="post">
@@ -62,6 +63,17 @@ function Post({ post, like, unlike }) {
         {post.description}
       </h4>
       <p className="post__textTwo">{post.comments.length} comments</p>
+      <div className="post__comments">
+        {/* showing only last 4 comments */}
+        {post.comments.slice(-4).map((comment) => (
+          <p key={comment._id}>
+            <strong>{comment.postedBy} </strong>
+            {comment.comment}
+          </p>
+        ))}
+      </div>
+      <p className="post__date">{new Date(post.createdAt).toDateString()}</p>
+      <CommentBox postId={post._id} reload={reload} setReload={setReload} />
     </div>
   );
 }

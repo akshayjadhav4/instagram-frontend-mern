@@ -1,0 +1,20 @@
+.commentBox {
+  padding: 20px;
+  border-top: 1px solid lightgray;
+}
+.commentBox__form {
+  display: flex;
+}
+.commentBox__input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+}
+
+.commentBox__button {
+  flex: 0;
+}
+
+.commentBox__button .MuiButton-label {
+  color: #0095f6 !important;
+}

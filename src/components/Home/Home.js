@@ -116,7 +116,7 @@ function Home() {
         });
     };
     getAllPostsForFollowing();
-  }, [user._id, token]);
+  }, [user._id, token, reload]);
   return (
     <Base>
       <div className="home">
@@ -137,6 +137,8 @@ function Home() {
                     post={post}
                     like={like}
                     unlike={unlike}
+                    reload={reload}
+                    setReload={setReload}
                   />
                 ))}
               </div>

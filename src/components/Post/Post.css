@@ -59,3 +59,14 @@
 .post__icon--active {
   color: red !important;
 }
+
+.post__date {
+  padding-left: 20px;
+  padding-bottom: 10px;
+  color: #b1b1b1;
+}
+
+.post__comments {
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
