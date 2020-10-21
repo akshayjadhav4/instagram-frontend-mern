@@ -69,7 +69,7 @@ function AddPost() {
         <h2>Add Post</h2>
       </div>
       {error && (
-        <div className="signIn__alert">
+        <div className="addPost__alert">
           <Alert severity="error">{error}</Alert>
         </div>
       )}

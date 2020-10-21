@@ -82,12 +82,12 @@ function EditProfile() {
                 <h2>{user?.username}</h2>
               </div>
               {error && (
-                <div className="signIn__alert">
+                <div className="editProfile__alert">
                   <Alert severity="error">{error}</Alert>
                 </div>
               )}
               {success && (
-                <div className="signIn__alert">
+                <div className="editProfile__alert">
                   <Alert severity="success">{success}</Alert>
                 </div>
               )}
