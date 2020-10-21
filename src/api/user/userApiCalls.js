@@ -47,3 +47,19 @@ export const getAllUsers = (userId, token) => {
     })
     .catch((error) => console.log(error));
 };
+
+export const followUser = (userId, token, followingId) => {
+  return fetch(`${API}/user/follow/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ followingId: followingId }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};

@@ -6,13 +6,29 @@ import Alert from "@material-ui/lab/Alert";
 import profilePhoto from "../../images/user.png";
 import FollowSuggestion from "../FollowSuggestion/FollowSuggestion";
 import { isAuthenticated } from "../../api/auth";
-import { getAllUsers } from "../../api/user/userApiCalls";
+import { getAllUsers, followUser } from "../../api/user/userApiCalls";
 
 function Home() {
   const [error, setError] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [success, setSuccess] = useState("");
+
+  // using reload as dependancy to get new suggestion list
+  const [reload, setReload] = useState(false);
 
   const { user, token } = isAuthenticated();
+  const follow = (followId) => {
+    followUser(user._id, token, followId)
+      .then((data) => {
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setSuccess(`You started following.`);
+          setReload(!reload);
+        }
+      })
+      .catch((error) => setError("ERROR WHILE SENDING FOLLOW REQUEST."));
+  };
 
   // loading user list for follow suggestions
   useEffect(() => {
@@ -28,7 +44,7 @@ function Home() {
         .catch((error) => setError("ERROR WHILE GETTING SUGGESTION LIST."));
     };
     getAllSuggestions();
-  }, [user._id, token]);
+  }, [user._id, token, reload]);
 
   return (
     <Base>
@@ -39,7 +55,7 @@ function Home() {
           </div>
         )}
         <div className="home__container">
-          <div className="home__posts">{/* POSTS */}</div>
+          <div className="home__posts"></div>
           <div className="home__suggesions">
             <div className="home__suggesionHeader">
               <Avatar className="home__avatar" src={profilePhoto} />
@@ -51,11 +67,18 @@ function Home() {
             {suggestions?.length > 0 && (
               <>
                 <h4 className="home__suggesionText">Suggestions For You</h4>
+                {success && (
+                  <div className="home__alert">
+                    <Alert severity="success">{success}</Alert>
+                  </div>
+                )}
                 <div className="home__suggesionContainer">
                   {suggestions.map((suggestion) => (
                     <FollowSuggestion
                       key={suggestion._id}
                       username={suggestion.username}
+                      follow={follow}
+                      followId={suggestion._id}
                     />
                   ))}
                 </div>
