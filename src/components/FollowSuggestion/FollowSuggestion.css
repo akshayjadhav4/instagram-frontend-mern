@@ -8,6 +8,7 @@
 .followSuggestion__left {
   display: flex;
   align-items: center;
+  margin-right: 10px;
 }
 .followSuggestion__avtar {
   margin-right: 10px;
