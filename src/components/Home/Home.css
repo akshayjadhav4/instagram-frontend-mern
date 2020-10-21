@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.home__container .MuiCircularProgress-colorPrimary {
+  color: #979797 !important;
+}
+
 .home__alert {
   margin: 5px;
 }
