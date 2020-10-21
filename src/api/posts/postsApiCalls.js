@@ -93,3 +93,18 @@ export const addComment = (postId, userId, token, comment) => {
     })
     .catch((error) => console.log(error));
 };
+
+// getting post to show on explore tab
+export const getAllPostsExplore = (userId, token) => {
+  return fetch(`${API}/user/explore/posts/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};

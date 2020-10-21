@@ -8,6 +8,7 @@ import PrivateRoutes from "./api/auth/PrivateRoutes";
 import Profile from "./components/Profile/Profile";
 import AddPost from "./components/AddPost/AddPost";
 import EditProfile from "./components/EditProfile/EditProfile";
+import Explore from "./components/Explore/Explore";
 function App() {
   return (
     <div className="app">
@@ -21,6 +22,7 @@ function App() {
             exact
             component={EditProfile}
           />
+          <PrivateRoutes path="/explore" exact component={Explore} />
           <Route path="/signup" exact component={SignUp} />
           <Route path="/signin" exact component={SignIn} />
         </Switch>
