@@ -80,7 +80,7 @@ function SignUp() {
             Login with facebook
           </Button>
           <div className="signup__divider">
-            <h4>
+            <h4 className="signup__dividerText">
               <span>OR</span>
             </h4>
           </div>

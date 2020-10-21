@@ -142,7 +142,7 @@ function SignIn() {
                 </Formik>
               </div>
               <div className="signin__divider">
-                <h4>
+                <h4 className="signin__dividerText">
                   <span>OR</span>
                 </h4>
               </div>
