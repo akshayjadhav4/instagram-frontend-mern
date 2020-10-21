@@ -33,3 +33,17 @@ export const updateUser = (userId, token, user) => {
       console.log(error);
     });
 };
+
+export const getAllUsers = (userId, token) => {
+  return fetch(`${API}/user/getAllUsers/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};

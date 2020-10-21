@@ -1,0 +1,48 @@
+.home__container {
+  display: flex;
+  justify-content: center;
+}
+
+.home__alert {
+  margin: 5px;
+}
+.home__suggesions {
+  margin-left: 20px;
+}
+
+.home__suggesionHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.home__avatar {
+  margin-right: 10px;
+  height: 80px !important;
+  width: 80px !important;
+}
+
+.home__headerText h4 {
+  font-weight: normal;
+}
+
+.home__suggesionContainer {
+  max-height: 300px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.home__suggesionText {
+  color: #979797;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 820px) {
+  .home__container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .home__suggesionContainer {
+    max-width: 600px;
+  }
+}

@@ -1,0 +1,19 @@
+.followSuggestion {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.followSuggestion__left {
+  display: flex;
+  align-items: center;
+}
+.followSuggestion__avtar {
+  margin-right: 10px;
+}
+
+.followSuggestion .MuiButton-label {
+  font-weight: 800 !important;
+  color: #00a2f8 !important;
+}
