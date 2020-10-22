@@ -3,7 +3,7 @@ import "./CommentBox.css";
 import { Button } from "@material-ui/core";
 import { isAuthenticated } from "../../api/auth";
 import { addComment } from "../../api/posts/postsApiCalls";
-function CommentBox({ postId, reload, setReload }) {
+function CommentBox({ postId, reload, setReload, viewPost }) {
   const [comment, setComment] = useState("");
   const { user, token } = isAuthenticated();
 
@@ -18,7 +18,11 @@ function CommentBox({ postId, reload, setReload }) {
         if (data.error) {
           alert(data.error);
         } else {
-          setReload(!reload);
+          if (viewPost) {
+            window.location.reload(true);
+          } else {
+            setReload(!reload);
+          }
         }
       })
       .catch((error) => alert("ERROR WHILE POSTING COMMENT"));
