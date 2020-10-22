@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Post.css";
 import { Avatar } from "@material-ui/core";
 import profilePhoto from "../../images/user.png";
@@ -11,6 +11,7 @@ import { isAuthenticated } from "../../api/auth";
 import CommentBox from "../CommentBox/CommentBox";
 function Post({ post, like, unlike, reload, setReload }) {
   const { user } = isAuthenticated();
+  const [commentLength, setCommentLength] = useState(-4);
   return (
     <div className="post">
       <div className="post__header">
@@ -65,12 +66,20 @@ function Post({ post, like, unlike, reload, setReload }) {
       <p className="post__textTwo">{post.comments.length} comments</p>
       <div className="post__comments">
         {/* showing only last 4 comments */}
-        {post.comments.slice(-4).map((comment) => (
+        {post.comments.slice(commentLength).map((comment) => (
           <p key={comment._id}>
             <strong>{comment.postedBy} </strong>
             {comment.comment}
           </p>
         ))}
+        {post.comments.length > 4 && (
+          <p
+            className="post__expandComments"
+            onClick={() => setCommentLength(-post.comments.length)}
+          >
+            View all {post.comments.length} comments
+          </p>
+        )}
       </div>
       <p className="post__date">{new Date(post.createdAt).toDateString()}</p>
       <CommentBox postId={post._id} reload={reload} setReload={setReload} />

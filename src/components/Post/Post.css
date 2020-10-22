@@ -71,3 +71,11 @@
   padding-left: 20px;
   padding-bottom: 10px;
 }
+
+.post__expandComments {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  color: #b1b1b1;
+  cursor: pointer;
+}
