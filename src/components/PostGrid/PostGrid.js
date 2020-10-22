@@ -43,7 +43,7 @@ function PostGrid({ posts }) {
                 handleClickOpen(post);
               }}
             >
-              <Card className={classes.root}>
+              <Card className={classes.root} style={{ cursor: "pointer" }}>
                 <CardContent>
                   <ImageHelper post={post} />
                 </CardContent>
