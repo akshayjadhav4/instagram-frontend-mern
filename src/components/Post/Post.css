@@ -54,6 +54,7 @@
 .post__icon {
   font-size: 30px !important;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .post__icon--active {
