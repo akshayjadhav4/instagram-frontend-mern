@@ -108,3 +108,17 @@ export const getAllPostsExplore = (userId, token) => {
     })
     .catch((error) => console.log(error));
 };
+
+export const deletePost = (postId, userId, token, post) => {
+  return fetch(`${API}/post/delete/${postId}/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
