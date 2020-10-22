@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Base from "../Base/Base";
 import ImageHelper from "../PostGrid/ImageHelper";
-import { Grid, Card, CardContent, CircularProgress } from "@material-ui/core";
+import {
+  Grid,
+  Card,
+  CardContent,
+  CircularProgress,
+  Dialog,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 import { isAuthenticated } from "../../api/auth";
 import { getAllPostsExplore } from "../../api/posts/postsApiCalls";
+import ViewPost from "../ViewPost/ViewPost";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,8 +27,20 @@ function Explore() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [post, setPost] = useState({});
+  const [maxWidth] = useState("lg");
+  const [fullWidth] = useState(true);
   const { user, token } = isAuthenticated();
+
+  const handleClickOpen = (post) => {
+    setOpen(true);
+    setPost(post);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     const loadPosts = () => {
@@ -65,6 +84,9 @@ function Explore() {
                   lg={4}
                   key={post._id}
                   style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    handleClickOpen(post);
+                  }}
                 >
                   <Card className={classes.root}>
                     <CardContent>
@@ -75,8 +97,15 @@ function Explore() {
               ))}
           </Grid>
         )}
+        <Dialog
+          onClose={handleClose}
+          open={open}
+          fullWidth={fullWidth}
+          maxWidth={maxWidth}
+        >
+          <ViewPost post={post} />
+        </Dialog>
       </div>
-      ;
     </Base>
   );
 }

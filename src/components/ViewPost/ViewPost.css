@@ -1,0 +1,70 @@
+.viewPost__card {
+  display: flex;
+  align-items: flex-start;
+}
+
+.viewPost__info {
+  flex: 1;
+}
+
+.viewPost__header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid lightgray;
+}
+
+.viewPost__image {
+  max-width: 70%;
+  object-fit: contain;
+}
+
+.viewPost__text {
+  font-weight: normal;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
+.viewPost__date {
+  padding-left: 20px;
+  padding-bottom: 20px;
+  color: #b1b1b1;
+}
+
+.viewPost__commentDate {
+  padding-bottom: 20px;
+  color: #b1b1b1;
+}
+.viewPost__comments {
+  max-height: 200px;
+  overflow-y: scroll;
+  padding-left: 20px;
+}
+
+/* hide scrollbar */
+.viewPost__comments::-webkit-scrollbar {
+  display: none;
+}
+
+.viewPost__comment {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.viewPost__icon {
+  font-size: 30px !important;
+  margin-right: 10px;
+}
+
+.viewPost__controls {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.viewPost__leftTop {
+  display: flex;
+  align-items: center;
+}
