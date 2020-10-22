@@ -94,8 +94,8 @@ function ViewPost({ post }) {
           {/* comments */}
           <div className="viewPost__comments">
             {post.comments.map((comment) => (
-              <div className="viewPost__comment">
-                <p key={comment._id}>
+              <div className="viewPost__comment" key={comment._id}>
+                <p>
                   <strong>{comment.postedBy} </strong>
                   {comment.comment}
                 </p>
