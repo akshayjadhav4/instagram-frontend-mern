@@ -6,12 +6,17 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 import ModeCommentOutlinedIcon from "@material-ui/icons/ModeCommentOutlined";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
+import DeleteIcon from "@material-ui/icons/Delete";
 import CommentBox from "../CommentBox/CommentBox";
 import { API } from "../../api/backend/backend";
-import { likePost, unlikePost } from "../../api/posts/postsApiCalls";
+import {
+  likePost,
+  unlikePost,
+  deletePost,
+} from "../../api/posts/postsApiCalls";
 import { isAuthenticated } from "../../api/auth";
 
-function ViewPost({ post, handleClose }) {
+function ViewPost({ post }) {
   const { user, token } = isAuthenticated();
 
   const imageUrl = post
@@ -44,6 +49,19 @@ function ViewPost({ post, handleClose }) {
         }
       })
       .catch((error) => alert("ERROR WHILE LIKEING POST"));
+  };
+
+  const deletePostHandle = (postId, author) => {
+    deletePost(postId, author, token)
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          alert("Post Deleted");
+          window.location.reload(true);
+        }
+      })
+      .catch((error) => alert("ERROR WHILE DELETING POST"));
   };
 
   return (
@@ -93,7 +111,7 @@ function ViewPost({ post, handleClose }) {
               <div className="viewPost__leftTop">
                 {post.likes.includes(user._id) ? (
                   <FavoriteOutlinedIcon
-                    className="post__icon post__icon--active"
+                    className="viewPost__icon viewPost__icon--active"
                     onClick={() => {
                       post.likes.includes(user._id)
                         ? unlike(post._id)
@@ -102,7 +120,7 @@ function ViewPost({ post, handleClose }) {
                   />
                 ) : (
                   <FavoriteBorderOutlinedIcon
-                    className="post__icon"
+                    className="viewPost__icon"
                     onClick={() => {
                       post.likes.includes(user._id)
                         ? unlike(post._id)
@@ -114,7 +132,17 @@ function ViewPost({ post, handleClose }) {
               </div>
               <h5>{post.likes.length} Likes</h5>
             </div>
-            <BookmarkBorderOutlinedIcon className="viewPost__icon" />
+            <div className="viewPost__rightTop">
+              <BookmarkBorderOutlinedIcon className="viewPost__icon" />
+              {user._id === post.author._id && (
+                <DeleteIcon
+                  className="viewPost__icon"
+                  onClick={() => {
+                    deletePostHandle(post._id, post.author._id);
+                  }}
+                />
+              )}
+            </div>
           </div>
           {/* posted date */}
           <p className="viewPost__date">
