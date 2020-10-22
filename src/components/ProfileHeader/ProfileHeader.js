@@ -59,10 +59,10 @@ function ProfileHeader({ username, posts, followers, following, name, bio }) {
           <Link className="profileHeader__link">
             <strong>{posts} </strong> posts
           </Link>
-          <Link className="profileHeader__link">
+          <Link to="/user/followersList" className="profileHeader__link">
             <strong>{followers}</strong> followers
           </Link>
-          <Link className="profileHeader__link">
+          <Link to="/user/followingList" className="profileHeader__link">
             <strong>{following}</strong> following
           </Link>
         </div>

@@ -9,6 +9,7 @@ import Profile from "./components/Profile/Profile";
 import AddPost from "./components/AddPost/AddPost";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Explore from "./components/Explore/Explore";
+import UserList from "./components/UserList/UserList";
 function App() {
   return (
     <div className="app">
@@ -23,6 +24,7 @@ function App() {
             component={EditProfile}
           />
           <PrivateRoutes path="/explore" exact component={Explore} />
+          <PrivateRoutes path="/user/:listName" exact component={UserList} />
           <Route path="/signup" exact component={SignUp} />
           <Route path="/signin" exact component={SignIn} />
         </Switch>

@@ -1,0 +1,36 @@
+.userList__header {
+  display: flex;
+  align-items: center;
+}
+
+.userList__listContainer {
+  display: grid;
+  place-items: center;
+}
+
+.userList__listItem {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+}
+
+.userList__left {
+  display: flex;
+  margin-right: 20px;
+  flex: 1;
+}
+
+.userList__avatar {
+  margin-right: 10px;
+}
+
+.userList__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.userList__listItem .MuiButton-label {
+  color: white !important;
+}
