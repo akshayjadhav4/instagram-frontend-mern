@@ -131,16 +131,20 @@ function Home() {
           ) : (
             <>
               <div className="home__posts">
-                {allPosts.map((post) => (
-                  <Post
-                    key={post._id}
-                    post={post}
-                    like={like}
-                    unlike={unlike}
-                    reload={reload}
-                    setReload={setReload}
-                  />
-                ))}
+                {allPosts.length > 0 ? (
+                  allPosts.map((post) => (
+                    <Post
+                      key={post._id}
+                      post={post}
+                      like={like}
+                      unlike={unlike}
+                      reload={reload}
+                      setReload={setReload}
+                    />
+                  ))
+                ) : (
+                  <h3 className="home__noPosts">No Posts to show you...</h3>
+                )}
               </div>
               <div className="home__suggesions">
                 <div className="home__suggesionHeader">
