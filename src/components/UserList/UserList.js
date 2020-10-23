@@ -58,7 +58,6 @@ function UserList() {
     getUserList();
   }, [user._id, listName, token, reload]);
 
-  console.log(list);
   return (
     <div className="userList">
       <div className="userList__header">
