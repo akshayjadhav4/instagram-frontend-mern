@@ -1,0 +1,38 @@
+.chatSidebar {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  border: 1px solid black;
+}
+
+.chatSidebar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid black;
+}
+
+.chatSidebar__userList {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.chatSidebar__item {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chatSidebar__item:hover {
+  background-color: rgb(241, 241, 241);
+}
+.chatSidebar__link {
+  text-decoration: none;
+  color: black;
+}
+
+.chatSidebar__infoText {
+  text-align: center;
+  color: #c8c8c8;
+}

@@ -1,0 +1,74 @@
+.chatScreen {
+  display: grid;
+  place-items: center;
+}
+.chatScreen__container {
+  margin-top: 10px;
+  background-color: #ffffff;
+  height: 90vh;
+  width: 90vw;
+  box-shadow: -1px 4px 20px -6px rgba(0, 0, 0, 0.75);
+  border: 1px solid black;
+}
+.chatScreen__header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.chatScreen__headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.chatScreen__avatar {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.chatScreen__scroll {
+  height: 50%;
+}
+
+.chatScreen__body {
+  padding: 30px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.chatScreen__body::-webkit-scrollbar {
+  display: none;
+}
+
+.chatScreen__footer {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 67px;
+  border: 1px solid black;
+  border-radius: 30px;
+}
+
+.chatScreen__formIcon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.chatScreen__footer > form {
+  flex: 1;
+  display: flex;
+}
+
+.chatScreen__footer form > input {
+  flex: 1;
+  border-radius: 30px;
+  padding: 10px;
+  border: none;
+  outline-width: 0;
+}
+
+.chatScreen__footer form > button {
+  display: none;
+}

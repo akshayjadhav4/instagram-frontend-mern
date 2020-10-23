@@ -10,6 +10,8 @@ import AddPost from "./components/AddPost/AddPost";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Explore from "./components/Explore/Explore";
 import UserList from "./components/UserList/UserList";
+import Chat from "./components/Chat/Chat";
+import ChatScreen from "./components/ChatScreen/ChatScreen";
 function App() {
   return (
     <div className="app">
@@ -25,6 +27,12 @@ function App() {
           />
           <PrivateRoutes path="/explore" exact component={Explore} />
           <PrivateRoutes path="/user/:listName" exact component={UserList} />
+          <PrivateRoutes path="/messages" exact component={Chat} />
+          <PrivateRoutes
+            path="/message/:sendId/:receiveId"
+            exact
+            component={ChatScreen}
+          />
           <Route path="/signup" exact component={SignUp} />
           <Route path="/signin" exact component={SignIn} />
         </Switch>
