@@ -7,35 +7,21 @@ import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import PhotoLibraryOutlinedIcon from "@material-ui/icons/PhotoLibraryOutlined";
 import { useParams, Link } from "react-router-dom";
-import { SOCKET_API } from "../../api/backend/backend";
-import io from "socket.io-client";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Message from "../Message/Message";
+import { newMessage, getAllmessages } from "../../api/message/messageApiCalls";
+import Pusher from "pusher-js";
 
-let socket;
 function ChatScreen() {
   // all chatSession is to map messages from db to each sender and receiver
   const { sendId, receiveId } = useParams();
   const chatSession1 = sendId + receiveId;
   const chatSession2 = receiveId + sendId;
-  const chatSession = {
-    chatSession1: chatSession1,
-    chatSession2: chatSession2,
-  };
 
   // state to store  messages
   const [messages, setMessages] = useState([]);
 
   const [input, setInput] = useState("");
-
-  // get all previous chat
-  useEffect(() => {
-    socket = io(SOCKET_API);
-    socket.emit("join", chatSession);
-    socket.on("output", (prevMessages) => {
-      setMessages(prevMessages.reverse());
-    });
-  }, []);
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -44,14 +30,55 @@ function ChatScreen() {
       user: sendId,
       chatSession: sendId + receiveId,
     };
-    socket.emit("message", messageInput);
-    socket.on("push", (newMessage) => {
-      setMessages((message) => [...messages, newMessage]);
-      setInput("");
-    });
+    newMessage(messageInput)
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          setInput("");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("ERROR WHILE SENDING MESSAGE");
+      });
   };
 
-  // <button onClick={onSubmit}>SEND</button>
+  // get all previous chat
+  useEffect(() => {
+    getAllmessages(sendId, receiveId)
+      .then((data) => {
+        setMessages(data);
+      })
+      .catch((error) => alert("ERROR WHILE GETTING MESSAGES"));
+    return () => {};
+  }, [sendId, receiveId]);
+
+  // realtime sync of messages
+  useEffect(() => {
+    const pusher = new Pusher(process.env.REACT_APP_PUSHER_ID, {
+      cluster: process.env.REACT_APP_PUSHER_CLUSTER,
+    });
+    const channel = pusher.subscribe(chatSession1);
+    channel.bind(
+      "newMessage",
+      (newMessages) => setMessages([...messages, newMessages]) //adding new messages to messages
+    );
+
+    const channel2 = pusher.subscribe(chatSession2);
+    channel2.bind(
+      "newMessage",
+      (newMessages) => setMessages([...messages, newMessages]) //adding new messages to messages
+    );
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+      channel2.unbind_all();
+      channel2.unsubscribe();
+    };
+  }, [messages, chatSession1, chatSession2]);
+
   return (
     <div className="chatScreen">
       <div className="chatScreen__container">
@@ -69,9 +96,10 @@ function ChatScreen() {
         </div>
         <ScrollToBottom className="chatScreen__scroll">
           <div className="chatScreen__body">
-            {messages.map((message) => (
-              <Message message={message} key={message._id} />
-            ))}
+            {messages &&
+              messages.map((message) => (
+                <Message message={message} key={message._id} />
+              ))}
           </div>
         </ScrollToBottom>
         <div className="chatScreen__footer">
